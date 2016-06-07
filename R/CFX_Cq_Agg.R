@@ -15,6 +15,9 @@ CQagg <- function(dataframe, label.column = 5 , cq.column = 8, filename = FALSE)
   
   temp.dataframe <- cbind(dataframe[ , 1:(cq.column - 1)], dataframe[,(cq.column + 1) : 
                                                                        length(dataframe)], dataframe[,cq.column]) # Rearranges supplied dataframe to put CQ values in last column
+  
+  temp.dataframe <- temp.dataframe[order(temp.dataframe$Content),] ## Orders dataframe
+  
   output.df2 <- temp.dataframe[1,] ## Initilizes the return data frame with the first row of qPCR information
   rowcounter <- 2 # Index for keeping track of the row of the new data frame currently being operated on (Sample label)
   columncounter <- length(temp.dataframe) + 1 ## Index for keeping track of column of new data frame being operated on (individual cq values)
